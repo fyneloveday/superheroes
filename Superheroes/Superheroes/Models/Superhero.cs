@@ -8,4 +8,5 @@ namespace Superheroes.Models
     public class Superhero
     {
     }
+
 }
