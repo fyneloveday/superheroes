@@ -28,14 +28,14 @@ namespace Superheroes.Controllers
         }
 
         // GET: Superhero/Create
-        //public ActionResult Create()
-        //{
-            
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
 
-       // POST: Superhero/Create
-       [HttpPost]
+            return View();
+        }
+
+        // POST: Superhero/Create
+        [HttpPost]
         public ActionResult Create([Bind(Include = "FirstName, LastName, Alterego")] Superhero superhero)
         {
             try
