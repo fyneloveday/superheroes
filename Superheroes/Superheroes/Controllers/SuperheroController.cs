@@ -28,28 +28,29 @@ namespace Superheroes.Controllers
         }
 
         // GET: Superhero/Create
-        public ActionResult Create()
-        {
-            db.Superheroes.Add(superhero);
-            db.SaveChanges();
-            return View();
-        }
-
-        // POST: Superhero/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
+        //public ActionResult Create()
         //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
+            
+        //    return View();
         //}
+
+       // POST: Superhero/Create
+       [HttpPost]
+        public ActionResult Create([Bind(Include = "FirstName, LastName, Alterego")] Superhero superhero)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                db.Superheroes.Add(superhero);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ViewBag.message = "Sorry, but you must enter the required information.";
+                return View(superhero);
+            }
+        }
 
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
