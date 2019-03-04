@@ -18,7 +18,8 @@ namespace Superheroes.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            return View();
+            List<Superhero> superheroes = db.Superheroes.ToList();
+            return View(superheroes);
         }
 
         // GET: Superhero/Details/5
