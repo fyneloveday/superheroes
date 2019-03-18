@@ -10,7 +10,7 @@ namespace Superheroes.Controllers
 {
     public class SuperheroController : Controller
     {
-        ApplicationDbContext db;
+        private ApplicationDbContext db;
         public SuperheroController()
         {
             db = new ApplicationDbContext();
@@ -19,14 +19,15 @@ namespace Superheroes.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            List<Superhero> superheroes = db.Superheroes.ToList();
-            return View(superheroes);
+            var superhero = db.Superhero.ToList();
+            return View(superhero);
         }
 
         // GET: Superhero/Details/5
+        [HttpPost]
         public ActionResult Details(int id)
         {
-            Superhero superhero = db.GetSuperhero(id);
+            var superhero = db.Superheroes.Find(id);
 
             return View(superhero);
         }
@@ -59,7 +60,8 @@ namespace Superheroes.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var superhero = db.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // POST: Superhero/Edit/5
