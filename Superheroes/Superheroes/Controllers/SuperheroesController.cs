@@ -3,32 +3,31 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Superheroes.Controllers
 {
-    public class SuperheroController : Controller
+    public class SuperheroesController : Controller
     {
         private ApplicationDbContext db;
-        public SuperheroController()
+        public SuperheroesController()
         {
             db = new ApplicationDbContext();
         }
-        
+
         // GET: Superhero
         public ActionResult Index()
         {
-            var superhero = db.Superhero.ToList();
+            var superhero = db.Superheroes.ToList();
             return View(superhero);
         }
 
         // GET: Superhero/Details/5
-        [HttpPost]
         public ActionResult Details(int id)
         {
             var superhero = db.Superheroes.Find(id);
-
             return View(superhero);
         }
 
@@ -41,7 +40,7 @@ namespace Superheroes.Controllers
 
         // POST: Superhero/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "FirstName, LastName, Alterego, primaryAbilities, secondaryAbilities")] Superhero superhero)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
@@ -52,7 +51,6 @@ namespace Superheroes.Controllers
             }
             catch
             {
-                ViewBag.message = "Sorry, but you must enter the required information.";
                 return View(superhero);
             }
         }
@@ -66,34 +64,39 @@ namespace Superheroes.Controllers
 
         // POST: Superhero/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "FirstName, LastName, Alterego, primaryAbilities, secondaryAbilities")] Superhero superhero)
+        public ActionResult Edit(Superhero superhero)
         {
-            //try
+            try
             {
                 // TODO: Add update logic here
                 db.Entry(superhero).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-              
+
             }
-            //catch
-            
+            catch
+            {
+                return View(superhero);
+            }
+
+
         }
 
         // GET: Superhero/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-
-            return View();
+            var superhero = db.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // POST: Superhero/Delete/5
         [HttpPost]
-        public ActionResult Delete([Bind(Include = "FirstName, LastName, Alterego")] Superhero superhero)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                var superhero = db.Superheroes.Find(id);
                 db.Superheroes.Remove(superhero);
                 db.SaveChanges();
 

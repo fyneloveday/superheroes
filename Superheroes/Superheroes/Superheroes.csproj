@@ -176,9 +176,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SuperheroController.cs" />
+    <Compile Include="Controllers\SuperheroesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041434333_GetDb.cs" />
+    <Compile Include="Migrations\201904041434333_GetDb.Designer.cs">
+      <DependentUpon>201904041434333_GetDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904041913440_GetDb1.cs" />
+    <Compile Include="Migrations\201904041913440_GetDb1.Designer.cs">
+      <DependentUpon>201904041913440_GetDb1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -244,9 +252,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Superhero\Create.cshtml" />
-    <Content Include="Views\Superhero\Index.cshtml" />
-    <Content Include="Views\Superhero\Details.cshtml" />
+    <Content Include="Views\Superheroes\Create.cshtml" />
+    <Content Include="Views\Superheroes\Index.cshtml" />
+    <Content Include="Views\Superheroes\Details.cshtml" />
+    <Content Include="Views\Superheroes\Edit.cshtml" />
+    <Content Include="Views\Superheroes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,6 +273,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904041434333_GetDb.resx">
+      <DependentUpon>201904041434333_GetDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904041913440_GetDb1.resx">
+      <DependentUpon>201904041913440_GetDb1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

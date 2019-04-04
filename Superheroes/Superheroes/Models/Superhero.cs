@@ -27,8 +27,6 @@ namespace Superheroes.Models
 
         [Display(Name = "Catchphrase")]
         public string Catchphrase { get; set; }
-
-
     }
 
 }
